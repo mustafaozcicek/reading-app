@@ -8,8 +8,8 @@
 <style>
 :root{color-scheme:light;--paper:#fff9f8;--ink:#201416;--muted:#775e63;--line:#ecd9dc;--band:#ffe5e5;--accent:#a1344d;--panel:#fff9f8;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 [data-theme=dark]{color-scheme:dark;--paper:#000;--ink:#fff;--muted:#aaa;--line:#2c2c2c;--band:transparent;--accent:#ff9bad;--panel:#111}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);overflow:hidden}button,input{font:inherit}button{color:inherit;cursor:pointer}button:focus-visible,input:focus-visible,main:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.app{height:100vh;height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;max-width:1100px;margin:auto;padding:env(safe-area-inset-top) max(14px,env(safe-area-inset-right)) env(safe-area-inset-bottom) max(14px,env(safe-area-inset-left))}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);overflow:hidden;height:100vh;height:100dvh;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr)}button,input{font:inherit}button{color:inherit;cursor:pointer}button:focus-visible,input:focus-visible,main:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.app{height:100%;min-height:0;min-width:0;width:100%;display:grid;grid-column:1;grid-row:1;grid-template-rows:auto minmax(0,1fr) auto;max-width:1100px;margin:auto;padding:env(safe-area-inset-top) max(14px,env(safe-area-inset-right)) env(safe-area-inset-bottom) max(14px,env(safe-area-inset-left))}
 header{display:flex;justify-content:flex-end;padding:6px 0}
 .eyebrow{color:var(--accent);font-size:10px;font-weight:750;letter-spacing:.2em;text-transform:uppercase}
 .icon{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:50%;background:transparent}.icon:hover{background:var(--band);outline:1px solid var(--line)}.icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -21,13 +21,22 @@ footer{width:min(100%,480px);justify-self:center;padding:7px 3px 13px}.meta{disp
 .scrubber{position:relative;display:grid;align-items:center;height:36px}.scrubber::before,.scrubber::after{content:'';position:absolute;inset-inline:5px;height:3px;border-radius:3px;background:var(--line);pointer-events:none}.scrubber::after{background:var(--accent);transform:scaleX(var(--progress,0));transform-origin:left}.scrubber input{position:relative;z-index:1;appearance:none;height:100%;background:transparent;border-radius:8px}.scrubber input::-webkit-slider-thumb{appearance:none;width:10px;height:10px;border-radius:50%;background:var(--accent)}.scrubber input::-moz-range-thumb{width:10px;height:10px;border:0;border-radius:50%;background:var(--accent)}
 .theme-setting{display:flex;justify-content:space-between;align-items:center;min-height:44px;font-size:14px;cursor:pointer}.theme-setting input{width:18px;height:18px;accent-color:var(--accent)}
 .theme-setting select{font:inherit;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 8px}
+.story-tools{display:grid;gap:10px;margin:16px 0 22px}.story-tools select{width:100%;min-height:44px;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px}.story-help{font-size:12px;line-height:1.5;color:var(--muted);margin:0}.picture-note{max-width:80%;text-align:center;font-size:14px;line-height:1.5;color:var(--muted)}.picture-note[hidden]{display:none}
+.picture img[hidden]{display:none}
 .trail[data-tint="true"] [data-tone="0"]{color:#c679ba}.trail[data-tint="true"] [data-tone="1"]{color:#50918b}.trail[data-tint="true"] [data-tone="2"]{color:#4b3e28}
-.row[data-distance="0"] span{white-space:pre;text-align:center}
-.focus-guide{position:absolute;left:50%;top:50%;transform:translate(-50%,calc(var(--focus-height,40px) / 2 + 10px));pointer-events:none;z-index:2}
-.focus-guide[hidden]{display:none}
-.focus-guide span{display:block;width:14px;height:3px;border-radius:2px;background:var(--ink);opacity:.5;transform-origin:center}
+.row[data-distance="0"] span{white-space:pre;text-align:center;text-decoration-thickness:max(1px,.035em);text-underline-offset:.12em;text-decoration-skip-ink:auto}
+.trail[data-focus-decoration="underline"] .row[data-distance="0"] span{text-decoration-line:underline}
 [data-theme="dark"] .trail[data-tint="true"] [data-tone="0"]{color:#f2e3ee}[data-theme="dark"] .trail[data-tint="true"] [data-tone="1"]{color:#def1ee}[data-theme="dark"] .trail[data-tint="true"] [data-tone="2"]{color:#f3e9d8}
-dialog{color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:20px;width:min(420px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto}dialog::backdrop{background:#0008}dialog h2{margin:0;font-size:20px}.sheet-head{display:flex;justify-content:space-between;align-items:center}.sheet-head button,.jump{border:1px solid var(--line);border-radius:10px;background:transparent;min-height:44px;padding:8px 12px}.setting{display:grid;gap:6px;margin:16px 0}.setting label{display:flex;justify-content:space-between;font-size:14px}.setting output{color:var(--muted)}.jumps{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.jump:hover,.sheet-head button:hover{border-color:var(--accent)}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+dialog{color:var(--ink);background:var(--panel);position:relative;inset:auto;margin:0;border:0;border-top:1px solid var(--line);border-radius:20px 20px 0 0;padding:0;width:100%;height:100%;max-width:none;max-height:none;min-height:0;min-width:0;overflow:hidden;grid-column:1;grid-row:2}
+dialog[open]{display:flex;flex-direction:column;animation:sheet-in .2s ease-out}
+[data-options="open"] body{grid-template-rows:minmax(0,1fr) min(46dvh,420px)}
+.settings-body{overflow-y:auto;overscroll-behavior:contain;min-height:0;padding:0 20px max(20px,env(safe-area-inset-bottom));scrollbar-gutter:stable}
+dialog h2{margin:0;font-size:18px}.sheet-head{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;gap:12px;border-bottom:1px solid var(--line);flex-shrink:0}.sheet-head button,.jump{border:1px solid var(--line);border-radius:10px;background:transparent;color:inherit;min-height:44px;padding:8px 12px}.setting{display:grid;gap:6px;margin:16px 0}.setting label{display:flex;justify-content:space-between;font-size:14px}.setting output{color:var(--muted)}.jumps{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.jump:hover,.sheet-head button:hover{border-color:var(--accent)}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.story-tools{display:block;border-top:1px solid var(--line);padding-top:14px}.story-tools summary{cursor:pointer;font-weight:600;min-height:32px}.story-tools-content{display:grid;gap:10px;padding-top:10px}
+@keyframes sheet-in{from{transform:translateY(32px);opacity:0}to{transform:none;opacity:1}}
+@media(min-width:900px){[data-options="open"] body{grid-template-columns:minmax(0,1fr) 360px;grid-template-rows:minmax(0,1fr)}dialog{grid-column:2;grid-row:1;border-top:0;border-left:1px solid var(--line);border-radius:0}dialog[open]{animation:panel-in .2s ease-out}}
+@keyframes panel-in{from{transform:translateX(32px);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){dialog[open]{animation:none}}
 @media(min-width:700px){.app{padding-inline:28px}footer{padding-bottom:16px}}
 @media(max-height:480px){header{padding-block:4px}footer{padding-block:4px}main{padding-block:4px}.trail{gap:3px}}
 </style>
@@ -35,12 +44,11 @@ dialog{color:var(--ink);background:var(--panel);border:1px solid var(--line);bor
 <body>
 <div class="app">
   <header>
-    <button class="icon" id="settings" type="button" aria-label="Reading options" title="Reading options" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5" fill="var(--paper)"/><circle cx="15" cy="17" r="2.5" fill="var(--paper)"/></svg></button>
+    <button class="icon" id="settings" type="button" aria-label="Reading options" title="Reading options" aria-haspopup="dialog" aria-controls="panel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5" fill="var(--paper)"/><circle cx="15" cy="17" r="2.5" fill="var(--paper)"/></svg></button>
   </header>
   <main id="stage" tabindex="0" aria-label="Reading area" aria-describedby="hint">
     <div class="trail" id="trail" aria-hidden="true"></div>
-    <div class="picture" id="picture" hidden><img id="art" alt=""></div>
-    <div class="focus-guide" id="focus-guide" aria-hidden="true" hidden><span></span></div>
+    <div class="picture" id="picture" hidden><img id="art" alt="" referrerpolicy="no-referrer"><p class="picture-note" id="picture-note" hidden></p></div>
     <div id="spoken" class="sr" aria-live="polite" aria-atomic="true"></div>
   </main>
   <footer>
@@ -52,9 +60,8 @@ dialog{color:var(--ink);background:var(--panel);border:1px solid var(--line);bor
   </footer>
 </div>
 <dialog id="panel" aria-labelledby="settings-title">
-  <form method="dialog">
-    <div class="sheet-head"><h2 id="settings-title">Reading options</h2><button>Done</button></div>
-  </form>
+  <div class="sheet-head"><h2 id="settings-title">Reading options</h2><button id="close-settings" type="button">Done</button></div>
+  <div class="settings-body">
   <label class="theme-setting" for="theme">Dark mode <input id="theme" type="checkbox"></label>
   <label class="theme-setting" for="motion">Word movement
     <select id="motion"><option value="fixed">Fixed</option><option value="scroll">Scroll</option></select>
@@ -66,14 +73,31 @@ dialog{color:var(--ink);background:var(--panel);border:1px solid var(--line);bor
     <select id="focus-count"><option>1</option><option>2</option><option>3</option><option>4</option></select>
   </label>
   <label class="theme-setting" for="sentence-tint">Sentence tint <input id="sentence-tint" type="checkbox"></label>
-  <label class="theme-setting" for="guide-mode">Focus guide
-    <select id="guide-mode"><option value="off">Off</option><option value="static">Static</option><option value="responsive">Scroll side-to-side</option></select>
+  <label class="theme-setting" for="focus-decoration">Focus guide
+    <select id="focus-decoration"><option value="underline">Underline</option><option value="none">None</option></select>
   </label>
   <div class="setting"><label for="size">Focus word size <output id="size-value"></output></label><input id="size" type="range" min="70" max="130" step="5" value="100"></div>
   <div class="setting"><label for="fade">Context visibility <output id="fade-value"></output></label><input id="fade" type="range" min="30" max="100" step="5" value="65"></div>
   <div class="setting"><label for="step">Swipe distance per item <output id="step-value"></output></label><input id="step" type="range" min="20" max="80" step="5" value="40"></div>
+  <div class="setting">
+    <label for="pace">Maximum scroll pace <output id="pace-value"></output></label>
+    <input id="pace" type="range" min="0" max="20" step=".5" value="6">
+  </div>
+  <details class="story-tools">
+    <summary>Stories and files</summary>
+    <div class="story-tools-content">
+    <button class="jump" id="load-stories" type="button">Load story files</button>
+    <input id="story-files" type="file" accept=".txt,.md,.markdown,image/*" multiple hidden>
+    <label for="story-choice">Choose a story</label>
+    <select id="story-choice"></select>
+    <p class="story-help">Load plain text or Markdown files. Select several stories to switch between them. You can include local images referenced in Markdown.</p>
+    <p class="story-help">Files stay in this browser session. Remote image links contact the image host.</p>
+    <p class="story-help" id="import-status" role="status" aria-live="polite"></p>
   <div class="eyebrow">Jump to a scene</div><div class="jumps" id="jumps"></div>
-  <p class="meta">The Elves and the Shoemaker · Brothers Grimm</p>
+  <p class="meta" id="story-credit">The Elves and the Shoemaker · Brothers Grimm</p>
+    </div>
+  </details>
+  </div>
 </dialog>
 <script>
 const scenes = [
@@ -102,19 +126,167 @@ const illustrations = [
   }
 ];
 const $ = id => document.getElementById(id);
-const tokens = [];
+let tokens = [];
 let wordCount = 0;
 let sentence = 0;
-for (const [scene, passage] of scenes.entries()) {
-  for (const token of passage.split(/\s+/)) {
-    const abbreviation = /^(Mr|Mrs|Ms|Dr)\.$/.test(token);
-    const ending = abbreviation ? '' : token.match(/[.!?]+[”’"']*$/)?.[0];
-    const word = ending ? token.slice(0, -ending.length) : token;
-    if (word) tokens.push({word, number: ++wordCount, sentence});
-    if (ending) tokens.push({punctuation: ending, sentence: sentence++});
-  }
-  if (illustrations[scene]) tokens.push({picture: illustrations[scene], number: wordCount, plate: scene + 1});
+let pictureCount = 0;
+const builtIn = {title:'The Elves and the Shoemaker', credit:'Brothers Grimm', blocks:scenes.flatMap((text, scene) => [
+  {text}, ...(illustrations[scene] ? [{picture:illustrations[scene]}] : [])
+])};
+const library = [builtIn];
+let activeStory = 0;
+let importSequence = 0;
+
+function plainMarkdown(text) {
+  return text
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/\[([^\]]+)\]\[[^\]]*\]/g, '$1')
+    .replace(/<https?:\/\/[^>]+>/g, '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/\[\^[^\]]+\]/g, '')
+    .replace(/(\*\*|__|~~|\`)(.*?)\1/g, '$2')
+    .replace(/(^|\s)[*_]([^*_\n]+)[*_](?=\s|[.,!?;:]|$)/g, '$1$2')
+    .replace(/\\([\\\`*{}\[\]()#+.!_>-])/g, '$1');
 }
+
+function parseStory(source, filename, imageFiles) {
+  const blocks = [];
+  let paragraph = [];
+  let title = filename.replace(/\.(txt|md|markdown)$/i, '');
+  let foundTitle = false;
+  function flush() {
+    const text = paragraph.join(' ').trim();
+    if (text) {
+      const imagePattern = /!\[([^\]]*)\]\((<[^>]+>|[^)\s]+)(?:\s+["'][^)]*["'])?\)/g;
+      let offset = 0;
+      for (const match of text.matchAll(imagePattern)) {
+        const before = plainMarkdown(text.slice(offset, match.index)).trim();
+        if (before) blocks.push({text:before});
+        const path = match[2].replace(/^<|>$/g, '');
+        let imageName = path.split(/[?#]/)[0].split(/[\\/]/).pop();
+        try { imageName = decodeURIComponent(imageName); } catch {}
+        const local = imageFiles.find(file => file.name === imageName);
+        const src = local ? URL.createObjectURL(local)
+          : /^https:\/\//i.test(path) || /^data:image\/(png|jpeg|gif|webp);base64,/i.test(path) ? path : '';
+        blocks.push({picture:{name:match[1] || imageName || 'Illustration', alt:match[1] || 'Story illustration', src}});
+        offset = match.index + match[0].length;
+      }
+      const after = plainMarkdown(text.slice(offset)).trim();
+      if (after) blocks.push({text:after});
+    }
+    paragraph = [];
+  }
+  const lines = source.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n').split('\n');
+  let fence = '';
+  for (const line of lines) {
+    const trimmed = line.trim();
+    const fenceMatch = trimmed.match(/^(\`{3,}|~{3,})/);
+    if (fenceMatch) {
+      flush();
+      if (!fence) fence = fenceMatch[1][0];
+      else if (fenceMatch[1][0] === fence) fence = '';
+      continue;
+    }
+    if (!fence && /^(---+|\*\*\*+|___+)\s*$/.test(trimmed)) { flush(); continue; }
+    if (!fence && /^\[[^\]]+\]:/.test(trimmed)) continue;
+    const heading = !fence && trimmed.match(/^#{1,6}\s+(.+?)(?:\s+#+)?$/);
+    if (heading) {
+      flush();
+      const headingText = plainMarkdown(heading[1]);
+      if (!foundTitle && /^#\s/.test(trimmed)) { title = headingText; foundTitle = true; }
+      else blocks.push({text:headingText, heading:headingText});
+      continue;
+    }
+    if (!trimmed) { flush(); continue; }
+    paragraph.push(fence ? trimmed : trimmed.replace(/^>\s?/, '').replace(/^(?:[-+*]|\d+[.)])\s+/, ''));
+  }
+  flush();
+  return {title, credit:filename, blocks};
+}
+
+function loadStory(storyIndex) {
+  const story = library[storyIndex];
+  const nextTokens = [];
+  let words = 0;
+  let sentenceIndex = 0;
+  let plates = 0;
+  for (const [blockIndex, block] of story.blocks.entries()) {
+    if (block.picture) {
+      nextTokens.push({picture:block.picture, number:words, plate:++plates});
+      continue;
+    }
+    for (const token of block.text.split(/\s+/).filter(Boolean)) {
+      const abbreviation = /^(Mr|Mrs|Ms|Dr|Prof|Sr|Jr|St|vs|etc)\.$/i.test(token) || /^(?:[A-Za-z]\.)+$/.test(token);
+      const ending = abbreviation ? '' : token.match(/[.!?]+[”’"'\])]*$/)?.[0];
+      const word = ending ? token.slice(0, -ending.length) : token;
+      if (word) nextTokens.push({word, number:/[\p{L}\p{N}]/u.test(word) ? ++words : words, sentence:sentenceIndex, block:blockIndex});
+      if (ending) nextTokens.push({punctuation:ending, sentence:sentenceIndex++});
+    }
+  }
+  if (!nextTokens.length || !words) throw new Error('This file has no readable story text.');
+  activeStory = storyIndex;
+  tokens = nextTokens;
+  wordCount = words;
+  sentence = sentenceIndex;
+  pictureCount = plates;
+  index = 0;
+  items = [];
+  visibleItems = [];
+  nextStepAt = 0;
+  drag = undefined;
+  wheelTotal = 0;
+  wheelStopped = false;
+  $('story-choice').value = storyIndex;
+  $('story-credit').textContent = story.title + ' · ' + story.credit;
+  groupWords(Number(focusCount.value));
+  rebuildJumps(story);
+}
+
+function refreshLibrary() {
+  $('story-choice').replaceChildren();
+  library.forEach((story, storyIndex) => {
+    const option = document.createElement('option');
+    option.value = storyIndex;
+    option.textContent = story.title;
+    $('story-choice').append(option);
+  });
+  $('story-choice').value = activeStory;
+}
+
+$('load-stories').onclick = () => $('story-files').click();
+$('story-files').onchange = async () => {
+  const sequence = ++importSequence;
+  const selected = Array.from($('story-files').files);
+  const storyFiles = selected.filter(file => /\.(txt|md|markdown)$/i.test(file.name));
+  const imageFiles = selected.filter(file => file.type.startsWith('image/'));
+  $('import-status').textContent = 'Loading stories…';
+  const added = [];
+  const errors = [];
+  for (const file of storyFiles) {
+    try {
+      if (file.size > 5 * 1024 * 1024) throw new Error('Please use a text file smaller than 5 MB.');
+      const source = await file.text();
+      if (sequence !== importSequence) return;
+      const story = parseStory(source, file.name, imageFiles);
+      if (!story.blocks.some(block => block.text && /[\p{L}\p{N}]/u.test(block.text))) throw new Error('No readable story text.');
+      added.push(story);
+    } catch (error) { errors.push(file.name + ' — ' + error.message); }
+  }
+  if (sequence !== importSequence) return;
+  const firstNew = library.length;
+  library.push(...added);
+  refreshLibrary();
+  if (added.length) loadStory(firstNew);
+  $('import-status').textContent = [
+    added.length ? 'Loaded ' + added.length + (added.length === 1 ? ' story.' : ' stories.') : 'Choose a .txt, .md or .markdown story file.',
+    ...errors
+  ].join(' ');
+  $('story-files').value = '';
+};
+$('story-choice').onchange = () => {
+  loadStory(Number($('story-choice').value));
+  $('import-status').textContent = '';
+};
 const rows = Array.from({length:7}, (_, i) => {
   const row = document.createElement('div');
   row.className = 'row';
@@ -129,57 +301,38 @@ let index = 0;
 let visibleItems = [];
 const animations = [];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const guideAnimations = [];
-let guidePhase = 0;
+let nextStepAt = 0;
 let prefs = {};
 try { prefs = JSON.parse(localStorage.getItem('one-word-prefs')) || {}; } catch {}
 function save() { try { localStorage.setItem('one-word-prefs', JSON.stringify(prefs)); } catch {} }
-
-const guideMode = $('guide-mode');
-// Enable the requested oscillation once when upgrading an older preview.
-guideMode.value = prefs.guideVersion === 2 && ['off','static','responsive'].includes(prefs.guideMode) ? prefs.guideMode : 'responsive';
-prefs.guideVersion = 2;
-prefs.guideMode = guideMode.value;
-save();
-$('stage').dataset.guide = guideMode.value;
-guideMode.onchange = () => {
-  prefs.guideMode = guideMode.value;
-  $('stage').dataset.guide = guideMode.value;
-  for (const animation of guideAnimations.splice(0)) animation.cancel();
-  updateGuide();
-  fitWords();
+const pace = $('pace');
+pace.value = Number.isFinite(prefs.pace) && prefs.pace >= 0 && prefs.pace <= 20 ? prefs.pace : 6;
+function displayPace() {
+  const label = Number(pace.value) === 0 ? 'Unlimited' : pace.value + ' steps / second';
+  $('pace-value').textContent = label;
+  pace.setAttribute('aria-valuetext', label);
+}
+displayPace();
+pace.oninput = pace.onchange = () => {
+  prefs.pace = Number(pace.value);
+  displayPace();
+  nextStepAt = 0;
   save();
 };
 
-function updateGuide() {
-  $('focus-guide').hidden = guideMode.value === 'off' || Boolean(items[index]?.picture);
-  positionGuide();
+function paceBlocked() {
+  return Number(pace.value) > 0 && performance.now() < nextStepAt;
 }
 
-function positionGuide() {
-  const amplitude = Math.max(0, Math.min(100, $('stage').clientWidth / 2 - 12));
-  const offset = guideMode.value === 'responsive' ? Math.sin(guidePhase) * amplitude : 0;
-  $('focus-guide').style.left = `calc(50% + ${offset}px)`;
-}
-
-function moveGuide(pixels) {
-  if (guideMode.value !== 'responsive' || $('focus-guide').hidden) return;
-  // One complete left-right cycle follows 800 pixels of vertical input.
-  guidePhase = (guidePhase + pixels * Math.PI / 400) % (Math.PI * 2);
-  positionGuide();
-}
-
-function respondGuide() {
-  if (guideMode.value !== 'responsive' || $('focus-guide').hidden || reducedMotion.matches) return;
-  for (const animation of guideAnimations.splice(0)) animation.cancel();
-  for (const mark of $('focus-guide').children) {
-    guideAnimations.push(mark.animate([
-      {transform:'scaleX(1)',opacity:.5},
-      {transform:'scaleX(1.25)',opacity:.65,offset:.2},
-      {transform:'scaleX(1)',opacity:.5}
-    ], {duration:360,easing:'ease-out'}));
-  }
-}
+const focusDecoration = $('focus-decoration');
+focusDecoration.value = prefs.focusDecoration === 'none' ? 'none' : 'underline';
+$('trail').dataset.focusDecoration = focusDecoration.value;
+focusDecoration.onchange = () => {
+  prefs.focusDecoration = focusDecoration.value;
+  $('trail').dataset.focusDecoration = focusDecoration.value;
+  fitWords();
+  save();
+};
 
 function groupWords(count) {
   const currentToken = items[index]?.start ?? 0;
@@ -187,7 +340,7 @@ function groupWords(count) {
   for (let start = 0; start < tokens.length;) {
     const first = tokens[start];
     let end = start + 1;
-    while (first.word && end - start < count && tokens[end]?.word && tokens[end].sentence === first.sentence) end++;
+    while (first.word && end - start < count && tokens[end]?.word && tokens[end].sentence === first.sentence && tokens[end].block === first.block) end++;
     const group = {...first, start, end};
     if (end > start + 1) {
       group.word = tokens.slice(start, end).map(token => token.word).join(' ');
@@ -255,7 +408,6 @@ for (const [id, suffix] of [['size','%'],['fade','%'],['step',' px']]) {
 
 const measure = document.createElement('canvas').getContext('2d');
 function fitWords() {
-  positionGuide();
   if ($('trail').hidden) return;
   const stage = $('stage');
   const base = Math.min(104, stage.clientWidth * .157, stage.clientHeight * .147) * Number($('size').value) / 100;
@@ -277,10 +429,9 @@ function fitWords() {
     }
     const fitted = lines.join('\n');
     if (text.textContent !== fitted) text.textContent = fitted;
-    const guideSpace = !distance && guideMode.value !== 'off' ? 26 : 0;
-    const fontSize = Math.min(target, (text.parentElement.clientHeight * .89 - guideSpace) / lines.length, width > available ? target * available / width : target);
+    const underlineSpace = !distance && focusDecoration.value === 'underline' ? target * .18 : 0;
+    const fontSize = Math.min(target, (text.parentElement.clientHeight * .89 - underlineSpace) / lines.length, width > available ? target * available / width : target);
     text.style.fontSize = Math.max(1, fontSize) + 'px';
-    if (!distance) $('focus-guide').style.setProperty('--focus-height', Math.max(1, fontSize) * lines.length + 'px');
   });
 }
 
@@ -302,20 +453,33 @@ function setRow(slot, item) {
 
 function show(target, move = false) {
   target = Math.max(0, Math.min(last, target));
+  if (move && paceBlocked()) return;
+  if (move && Number(pace.value) > 0) target = index + Math.sign(target - index);
   const delta = target - index;
+  if (move && delta && Number(pace.value) > 0) nextStepAt = performance.now() + 1000 / Number(pace.value);
+  if (!move) nextStepAt = 0;
   const scroll = move && delta !== 0 && Math.abs(delta) <= 3 && $('motion').value === 'scroll'
     && !items[index].picture && !items[target].picture;
   const previous = scroll ? new Map(visibleItems.map((item, slot) => [item, wordPose(rows[slot])])) : null;
   stopMotion();
   index = target;
   const item = items[index];
-  updateGuide();
-  if (move && delta) respondGuide();
   $('trail').hidden = Boolean(item.picture);
   $('picture').hidden = !item.picture;
   if (item.picture) {
     $('art').alt = item.picture.alt;
-    $('art').src = 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="720" height="960" viewBox="0 0 720 960">${item.picture.art}</svg>`);
+    const src = item.picture.art ? 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="720" height="960" viewBox="0 0 720 960">${item.picture.art}</svg>`) : item.picture.src;
+    function imageMissing() {
+      if (items[index]?.picture !== item.picture) return;
+      $('art').hidden = true;
+      $('picture-note').hidden = false;
+      $('picture-note').textContent = item.picture.alt + ' · Image unavailable. Include this image when loading the story.';
+    }
+    $('art').hidden = !src;
+    $('picture-note').hidden = true;
+    $('art').onerror = imageMissing;
+    if (src) $('art').src = src;
+    else imageMissing();
   } else {
     visibleItems = [];
     visibleItems[3] = index;
@@ -342,15 +506,15 @@ function show(target, move = false) {
       });
     }
   }
-  const fraction = item.start / (tokens.length - 1);
+  const fraction = tokens.length === 1 ? 1 : item.start / (tokens.length - 1);
   const progress = Math.round(fraction * 100);
-  $('position').textContent = item.picture ? `Illustration ${item.plate} of ${illustrations.length}`
+  $('position').textContent = item.picture ? `Illustration ${item.plate} of ${pictureCount}`
     : item.punctuation ? 'End of sentence'
     : item.lastNumber ? `Words ${item.number}–${item.lastNumber} of ${wordCount}`
     : `Word ${item.number} of ${wordCount}`;
   $('percentage').textContent = progress + '%';
   $('progress').value = index;
-  $('scrubber').style.setProperty('--progress', index / last);
+  $('scrubber').style.setProperty('--progress', last ? index / last : 1);
   $('progress').setAttribute('aria-valuetext', $('position').textContent);
   $('spoken').textContent = item.word ?? item.picture?.alt ?? `End of sentence ${item.punctuation}`;
   updateHint();
@@ -362,13 +526,45 @@ function updateHint() {
 }
 
 $('progress').oninput = () => show(Number($('progress').value));
-$('settings').onclick = () => $('panel').showModal();
-for (const [name, picture] of [['Beginning', null], ...illustrations.map(picture => [picture.name, picture])]) {
-  const button = document.createElement('button');
-  button.className = 'jump';
-  button.textContent = name;
-  button.onclick = () => { $('panel').close(); show(picture ? items.findIndex(item => item.picture === picture) : 0); $('stage').focus(); };
-  $('jumps').append(button);
+function syncOptionsLayout() {
+  const open = $('panel').open;
+  document.documentElement.dataset.options = open ? 'open' : 'closed';
+  $('settings').setAttribute('aria-expanded', String(open));
+}
+function closeOptions(restoreFocus = true) {
+  $('panel').close();
+  syncOptionsLayout();
+  if (restoreFocus) $('settings').focus();
+}
+$('settings').onclick = () => {
+  if ($('panel').open) closeOptions();
+  else {
+    $('panel').show();
+    syncOptionsLayout();
+  }
+};
+$('close-settings').onclick = () => closeOptions();
+$('panel').addEventListener('close', syncOptionsLayout);
+function rebuildJumps(story) {
+  $('jumps').replaceChildren();
+  const destinations = [{name:'Beginning', token:0}];
+  story.blocks.forEach((block, blockIndex) => {
+    if (block.picture || block.heading) destinations.push({
+      name:block.picture?.name ?? block.heading,
+      token:tokens.findIndex(token => block.picture ? token.picture === block.picture : token.block === blockIndex)
+    });
+  });
+  for (const destination of destinations.filter(destination => destination.token >= 0)) {
+    const button = document.createElement('button');
+    button.className = 'jump';
+    button.textContent = destination.name;
+    button.onclick = () => {
+      closeOptions(false);
+      show(items.findIndex(item => item.start <= destination.token && destination.token < item.end));
+      $('stage').focus();
+    };
+    $('jumps').append(button);
+  }
 }
 
 const stage = $('stage');
@@ -376,12 +572,15 @@ let drag;
 stage.addEventListener('pointerdown', event => {
   if (!event.isPrimary || event.button !== 0) return;
   stage.setPointerCapture(event.pointerId);
-  drag = {id:event.pointerId, origin:event.clientY, previousY:event.clientY, stopped:false};
+  drag = {id:event.pointerId, origin:event.clientY, stopped:false};
 });
 stage.addEventListener('pointermove', event => {
   if (drag?.id !== event.pointerId || drag.stopped) return;
-  moveGuide(drag.previousY - event.clientY);
-  drag.previousY = event.clientY;
+  if (paceBlocked()) {
+    drag.origin = event.clientY;
+    stopMotion();
+    return;
+  }
   const delta = drag.origin - event.clientY;
   const distance = Number($('step').value);
   const scrolling = $('motion').value === 'scroll';
@@ -398,7 +597,7 @@ stage.addEventListener('pointermove', event => {
     }
   }
   const steps = Math.floor(Math.abs(delta) / distance);
-  const count = scrolling ? Math.min(1, steps) : steps;
+  const count = scrolling || Number(pace.value) > 0 ? Math.min(1, steps) : steps;
   const direction = Math.sign(delta);
   if (!count) return;
   let target = index;
@@ -423,13 +622,13 @@ let wheelTime = -Infinity;
 let wheelTotal = 0;
 let wheelStopped = false;
 document.addEventListener('wheel', event => {
-  if ($('panel').open || event.ctrlKey || !event.deltaY || event.target.closest('input,select,button')) return;
+  if (event.ctrlKey || !event.deltaY || event.target.closest('#panel,input,select,button')) return;
   event.preventDefault();
   if (event.timeStamp - wheelTime > 160) { wheelTotal = 0; wheelStopped = false; }
   wheelTime = event.timeStamp;
   if (wheelStopped) return;
   const pixels = event.deltaMode === 1 ? event.deltaY * 40 : event.deltaMode === 2 ? event.deltaY * 100 : event.deltaY;
-  moveGuide(pixels);
+  if (paceBlocked()) { wheelTotal = 0; return; }
   wheelTotal += pixels;
   if (Math.abs(wheelTotal) < 38) return;
   show(index + Math.sign(wheelTotal), true);
@@ -438,15 +637,20 @@ document.addEventListener('wheel', event => {
 }, {passive:false});
 
 document.addEventListener('keydown', event => {
-  if ($('panel').open || event.target.closest('button,input') || event.altKey || event.ctrlKey || event.metaKey) return;
+  if (event.key === 'Escape' && $('panel').open) {
+    event.preventDefault();
+    closeOptions();
+    return;
+  }
+  if (event.target.closest('#panel,button,input,select,textarea,summary') || event.altKey || event.ctrlKey || event.metaKey) return;
   const key = event.key;
   if (!['ArrowDown','ArrowUp','Home','End'].includes(key)) return;
   event.preventDefault();
-  if (key.startsWith('Arrow')) moveGuide(Number($('step').value) * (key === 'ArrowDown' ? 1 : -1));
   show(key === 'Home' ? 0 : key === 'End' ? last : index + (key === 'ArrowDown' ? 1 : -1), key.startsWith('Arrow'));
 });
 new ResizeObserver(fitWords).observe(stage);
-groupWords(Number(focusCount.value));
+refreshLibrary();
+loadStory(0);
 </script>
 </body>
 </html>

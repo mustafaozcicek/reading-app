@@ -1,0 +1,45 @@
+# Welcome to the reading test
+
+This introduction is a chance to try the reader before you begin a story. Take your time and choose settings that feel comfortable.
+
+The reader brings a word, or a small group of words, into the center of the screen. Nearby words give you some context. Sentence endings, such as periods and question marks, appear as their own reading steps.
+
+Swipe upward on the reading area, or scroll down with your mouse or trackpad, to move forward. Swipe downward or scroll up to go back. You can also use the up and down arrow keys. Reading advances when you move it.
+
+Try moving forward a few steps. Then go back. Notice whether it is easy to keep your place.
+
+## Find your preferred settings
+
+Open Reading options using the sliders icon at the top right. You can return to these options during your reading session.
+
+Word movement has two choices. Fixed changes the words in place. Scroll lets you see words travel through the center. Try each one and choose the movement you prefer.
+
+Words in focus lets you choose one, two, three, or four words at a time. Try a few sizes of word group. The groups stop at sentence boundaries, so some steps may contain fewer words than your chosen number.
+
+Focus guide offers Underline or None. Underline places a line beneath the focused word or group of words. Choose whichever helps you follow the text.
+
+Reading typeface offers a sans serif font and a serif font. Focus word size changes the size of the central text. Longer groups may wrap onto two lines to fit the screen.
+
+Context visibility changes how clearly you see the words around the center. Try making those words more visible, then less visible. Notice which setting feels easier to follow.
+
+Dark mode changes the background and text colors. Sentence tint gives successive sentences slightly different text colors. You can turn each option on or off.
+
+Swipe distance per item controls how far your finger must move to advance a reading step. A smaller distance needs less movement. A larger distance needs a longer swipe.
+
+Maximum scroll pace limits how many reading steps you can advance each second. Each step may be one word, a word group, or punctuation. A lower limit slows the fastest possible pace. Move the slider to zero for Unlimited. Choose a pace that lets you follow the meaning comfortably.
+
+## Try the controls
+
+Close Reading options and read a little more. Pause whenever you want. If you lose your place, go back a few steps.
+
+The progress line at the bottom shows your position. You can drag it to move through the text. For this warm-up, feel free to explore.
+
+In Reading options, expand Stories and files. Load story files lets you choose local text or Markdown files. You can load several files, then use Choose a story to switch between them. Select the story assigned to you when you are ready.
+
+## Begin when you are ready
+
+The purpose of the session is to learn how this reader works for you. Read at a pace that allows you to understand the story. You can adjust the settings or take a break at any time.
+
+After reading, you will be asked about your experience and about events in the story. If a control is confusing or something feels uncomfortable, tell the facilitator.
+
+When you are comfortable with the controls, open Reading options, expand Stories and files, and choose your assigned story.
