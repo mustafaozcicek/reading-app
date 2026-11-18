@@ -34,7 +34,9 @@ Close Reading options and read a little more. Pause whenever you want. If you lo
 
 The progress line at the bottom shows your position. You can drag it to move through the text. For this warm-up, feel free to explore.
 
-In Reading options, expand Stories and files. Load story files lets you choose local text or Markdown files. You can load several files, then use Choose a story to switch between them. Select the story assigned to you when you are ready.
+In Reading options, the Reading material menu includes this warm-up and three classic stories. Select the story assigned to you when you are ready.
+
+To add another text or Markdown file, expand Stories and files and choose Load story files. You can load several files and switch between them using Reading material.
 
 ## Begin when you are ready
 
@@ -42,4 +44,4 @@ The purpose of the session is to learn how this reader works for you. Read at a 
 
 After reading, you will be asked about your experience and about events in the story. If a control is confusing or something feels uncomfortable, tell the facilitator.
 
-When you are comfortable with the controls, open Reading options, expand Stories and files, and choose your assigned story.
+When you are comfortable with the controls, open Reading options and use Reading material to choose your assigned story.
